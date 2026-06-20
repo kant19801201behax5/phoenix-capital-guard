@@ -45,11 +45,17 @@ async function readFeed() {
 // { safe, reason, revert, p99, paid }. Real x402 when payer key set, else public feed.
 async function getNetworkSafety() {
   let data, paid = false;
-  if (X402_ON && process.env.X402_PAYER_PRIVKEY) {
-    try { data = await paidGet(SAFE_URL); paid = true; }
-    catch (e) { console.log('   [x402] pay path failed (' + (e.message || e) + ') -> public feed'); data = await readFeed(); }
-  } else {
-    data = await readFeed();
+  try {
+    if (X402_ON && process.env.X402_PAYER_PRIVKEY) {
+      try { data = await paidGet(SAFE_URL); paid = true; }
+      catch (e) { console.log('   [x402] pay path failed (' + (e.message || e) + ') -> public feed'); data = await readFeed(); }
+    } else {
+      data = await readFeed();
+    }
+  } catch (e) {
+    // Fail-safe: no telemetry = no trade. Never crash the loop.
+    console.log('   [safety] oracle unreachable (' + (e.message || e) + ') -> fail-safe BLOCK');
+    return { safe: false, reason: 'oracle_unreachable_failsafe', revert: 0, p99: 0, paid: false };
   }
 
   const revert = Number(data.revert_ratio ?? data.revert ?? 0) || 0;

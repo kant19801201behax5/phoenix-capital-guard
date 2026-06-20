@@ -6,7 +6,7 @@
   "main": "src/agent.js",
   "scripts": {
     "start": "node src/agent.js",
-    "dry": "DRY_RUN=1 node src/agent.js",
+    "dry": "node src/agent.js",
     "register": "node src/register.js"
   },
   "dependencies": {
