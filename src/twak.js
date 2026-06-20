@@ -40,4 +40,11 @@ async function competeRegister() {
   throw new Error(`TWAK mode ${MODE} not wired yet`);
 }
 
-module.exports = { executeSwap, competeRegister };
+// Portfolio value (USD) of the self-custody agent wallet — feeds the drawdown guard.
+async function getEquityUsd(fallbackUsd) {
+  if (DRY) return fallbackUsd;                 // no real positions in dry
+  // LIVE: sum BEP-20 balances * price on BSC. TODO(wire): ethers + BSC_RPC + CMC price.
+  return fallbackUsd;
+}
+
+module.exports = { executeSwap, competeRegister, getEquityUsd };

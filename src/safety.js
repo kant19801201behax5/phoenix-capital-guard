@@ -8,7 +8,6 @@ const axios = require('axios');
 const SAFE_URL = process.env.PHOENIX_SAFE_URL || 'https://rtt.phoenix-ai.work/api/v1/safe';
 const FEED_URL = process.env.PHOENIX_FEED_URL || 'https://rtt.phoenix-ai.work/api/public-feed';
 const X402_ON  = process.env.X402_ENABLED === '1';
-const PRICE    = process.env.SAFE_P99_MAX_MS;
 
 const REVERT_MAX = 0.15;
 const P99_MAX_MS = Number(process.env.SAFE_P99_MAX_MS || 1500);

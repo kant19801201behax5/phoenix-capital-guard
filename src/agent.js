@@ -18,6 +18,11 @@ const log = (m) => console.log(`${ts()} [CAPITAL-GUARD] ${m}`);
 
 async function cycle(risk) {
   log('— cycle —');
+  // 0) mark live equity -> drawdown guard (capital protection, stay under 30% DQ)
+  const eq = await twak.getEquityUsd(START_EQUITY);
+  const dd = risk.mark(eq);
+  log(`equity=$${eq.toFixed(2)} drawdown=${dd.toFixed(1)}% (halt@${MAX_DD}%)`);
+
   // 1) CMC: toxic-funding sniffer
   const sig = await cmc.getSignal();
   log(`CMC signal: ${sig.direction} ${sig.symbol || ''} (${sig.reason})`);
