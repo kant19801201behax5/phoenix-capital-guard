@@ -31,7 +31,7 @@ Most teams will *consume* x402. We do both:
 We're not a guest in the agentic economy — we're a **two-way proof it works.** Real `HTTP 402 → sign → settle → data`, in the trade loop, not in the README.
 
 ### 3. Auditable Autonomy → Trust Wallet's stated open problem
-Every decision is logged with its cause (CMC signal + network verdict + risk state) and backed by on-chain proof. Silicon DNA (12-layer agent-identity gate, ML-KEM-768 PQC) answers *"who is this agent and can I trust it unattended?"* — exactly the audit gap the industry admits it has.
+Before trading, the agent completes the live **Silicon DNA** gate — a real **Argon2id proof-of-work handshake** (`GET /api/challenge → solve → POST /api/verify-pow → {status:"VERIFIED"}`, ML-KEM-768 PQC transport). **Verified live end-to-end:** a clean agent returns `VERIFIED`; a no-PoW request is classified `MALICIOUS_BOT` and rejected. So an unattended agent is provably a legit actor, not a malicious bot — exactly the audit gap the industry admits it has. Every decision is also logged with its cause (CMC signal + network verdict + risk state).
 
 ---
 

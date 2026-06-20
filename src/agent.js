@@ -48,8 +48,9 @@ async function main() {
   log('flow: identity → CMC funding → x402 pay → Phoenix SAFE/UNSAFE → TWAK self-sign → BSC swap');
   // Auditable autonomy: prove this agent is a LEGIT_AGENT via Silicon DNA before trading.
   const att = await identity.attest();
-  if (att.ok) log(`Agent identity: ATTESTED via Silicon DNA (trust=${att.trust} mode=${att.mode} bot_drop=${att.botDrop} banned=${att.banned})`);
-  else log(`Silicon DNA identity layer unreachable (${att.err}) — proceeding (demo)`);
+  if (att.ok && att.verified) log(`Agent identity: LEGIT_AGENT — Silicon DNA Argon2id PoW VERIFIED (m_cost=${att.mcost}, ${att.calcTime}ms)`);
+  else if (att.ok) log(`Silicon DNA: liveness only (mode=${att.mode || '?'}) — PoW not verified (${att.reason || att.note || ''})`);
+  else log(`Silicon DNA unreachable (${att.err}) — proceeding (demo)`);
   const risk = new Risk(START_EQUITY);
   // first cycle immediately, then on interval
   await cycle(risk).catch(e => log(`cycle error: ${e.message}`));
