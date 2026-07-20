@@ -1,5 +1,8 @@
 node_modules/
 .env
+BNB_HACKATHON_STATUS.md
 .npm-cache/
 *.log
 npm-debug.log*
+.deploy.env
+contracts/deployed_bsc.json
