@@ -38,7 +38,8 @@ Before trading, the agent completes the live **Silicon DNA** gate — a real **A
 ## Live demo (runs free, no capital — DRY/testnet)
 
 ```
-[CAPITAL-GUARD] flow: CMC funding → x402 pay → Phoenix SAFE/UNSAFE → TWAK self-sign → BSC swap
+[CAPITAL-GUARD] flow: identity → CMC funding → x402 pay → Phoenix SAFE/UNSAFE → TWAK self-sign → BSC swap
+[CAPITAL-GUARD] Agent identity: LEGIT_AGENT — Silicon DNA Argon2id PoW VERIFIED (m_cost=65536, 212ms)
 [CAPITAL-GUARD] CMC signal: long CAKE (toxic-funding -1.80%, fear=18)
 [CAPITAL-GUARD] Phoenix safety: SAFE (revert=0.6% p99=10.7ms)   ← LIVE production oracle
    [TWAK] self-sign swap 25$ USDT->CAKE (chain 56, self-custody)
